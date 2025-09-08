@@ -1,0 +1,54 @@
+@import '../base/variables';
+@import '../base/mixins';
+
+.button {
+  @include button-style($primary-color);
+
+  &--primary {
+    @include button-style($primary-color, $white, darken($primary-color, 10%));
+  }
+
+  &--secondary {
+    @include button-style($secondary-color, $white, darken($secondary-color, 10%));
+  }
+
+  &--success {
+    @include button-style($accent-color, $white, darken($accent-color, 10%));
+  }
+
+  &--danger {
+    @include button-style($danger-color, $white, darken($danger-color, 10%));
+  }
+
+  &--warning {
+    @include button-style($warning-color, $dark-gray, darken($warning-color, 10%));
+  }
+
+  &--info {
+    @include button-style($info-color, $white, darken($info-color, 10%));
+  }
+
+  &--outline-primary {
+    @include button-style($white, $primary-color, lighten($primary-color, 40%));
+    border-color: $primary-color;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &--small {
+    padding: 0.5rem 1rem;
+    font-size: $font-size-sm;
+  }
+
+  &--large {
+    padding: 1rem 2rem;
+    font-size: $font-size-lg;
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+}

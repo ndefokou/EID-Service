@@ -1,0 +1,46 @@
+// Color palette
+$primary-color: #0056b3; // Darker blue for primary actions
+$secondary-color: #6c757d; // Gray for secondary elements
+$accent-color: #28a745; // Green for success/accent
+$danger-color: #dc3545; // Red for errors/danger
+$warning-color: #ffc107; // Yellow for warnings
+$info-color: #17a2b8; // Cyan for informational messages
+
+$light-gray: #f8f9fa;
+$medium-gray: #e9ecef;
+$dark-gray: #343a40;
+$white: #ffffff;
+$black: #000000;
+
+// Typography
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-monospace: 'Fira Code', monospace;
+
+$font-size-base: 1rem; // 16px
+$font-size-sm: 0.875rem; // 14px
+$font-size-lg: 1.25rem; // 20px
+
+$line-height-base: 1.5;
+
+// Spacing
+$spacing-unit: 8px;
+$spacer: 1rem; // 16px
+
+$spacers: (
+  0: 0,
+  1: ($spacer * 0.25), // 4px
+  2: ($spacer * 0.5), // 8px
+  3: $spacer, // 16px
+  4: ($spacer * 1.5), // 24px
+  5: ($spacer * 3), // 48px
+);
+
+// Border radius
+$border-radius: 0.25rem; // 4px
+$border-radius-lg: 0.3rem; // 4.8px
+$border-radius-sm: 0.2rem; // 3.2px
+
+// Box shadows
+$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075);
+$box-shadow: 0 0.5rem 1rem rgba($black, 0.15);
+$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175);

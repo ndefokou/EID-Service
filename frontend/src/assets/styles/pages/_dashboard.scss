@@ -1,0 +1,69 @@
+@import '../base/variables';
+@import '../base/mixins';
+
+.dashboard-page {
+  padding: $spacer * 2;
+  min-height: 70vh;
+
+  &__header {
+    margin-bottom: $spacer * 2;
+    h1 {
+      color: $primary-color;
+      margin-bottom: $spacing-unit;
+    }
+    p {
+      color: $secondary-color;
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacer * 2;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 2fr; // Sidebar and main content layout
+    }
+  }
+
+  &__sidebar {
+    .card {
+      margin-bottom: $spacer * 2;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: $spacing-unit;
+        a {
+          display: block;
+          padding: $spacing-unit 0;
+          color: $dark-gray;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.2s ease-in-out;
+
+          &:hover {
+            color: $primary-color;
+          }
+          &.active {
+            color: $primary-color;
+            border-left: 3px solid $primary-color;
+            padding-left: $spacing-unit;
+          }
+        }
+      }
+    }
+  }
+
+  &__main-content {
+    // Styles for the main content area
+    .card {
+      // Specific card styles if needed
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@use "sass:color";
+@use "sass:math";
+
+/* Base styles */
+@forward 'base/variables'; // Use @forward to make variables available to others that @use main.scss
+@forward 'base/mixins';    // Use @forward to make mixins available to others that @use main.scss
+@use 'base/base';
+
+/* Layout styles */
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/main';
+
+/* Component styles */
+@use 'components/button';
+@use 'components/card';
+@use 'components/form';
+@use 'components/modal';
+
+/* Page-specific styles */
+@use 'pages/home';
+@use 'pages/login';
+@use 'pages/dashboard';
+
+/* Utility styles */
+@use 'utils/spacing';
+@use 'utils/typography';

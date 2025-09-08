@@ -1,0 +1,26 @@
+@import '../base/variables';
+
+// Text alignment
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+.text-center { text-align: center !important; }
+
+// Font weight
+.font-weight-light { font-weight: 300 !important; }
+.font-weight-normal { font-weight: 400 !important; }
+.font-weight-bold { font-weight: 700 !important; }
+
+// Text colors
+.text-primary { color: $primary-color !important; }
+.text-secondary { color: $secondary-color !important; }
+.text-accent { color: $accent-color !important; }
+.text-danger { color: $danger-color !important; }
+.text-warning { color: $warning-color !important; }
+.text-info { color: $info-color !important; }
+.text-white { color: $white !important; }
+.text-dark { color: $dark-gray !important; }
+
+// Font sizes
+.fs-sm { font-size: $font-size-sm !important; }
+.fs-base { font-size: $font-size-base !important; }
+.fs-lg { font-size: $font-size-lg !important; }

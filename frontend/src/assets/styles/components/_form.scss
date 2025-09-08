@@ -1,0 +1,81 @@
+@use '../base/variables' as variables;
+@use "sass:color";
+@use "sass:math";
+
+.form {
+  margin-bottom: variables.$spacer * 2;
+
+  &__group {
+    margin-bottom: variables.$spacer;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: variables.$spacing-unit;
+    font-weight: 600;
+    color: variables.$dark-gray;
+  }
+
+  &__input,
+  &__textarea,
+  &__select {
+    display: block;
+    width: 100%;
+    padding: variables.$spacing-unit;
+    font-size: variables.$font-size-base;
+    line-height: variables.$line-height-base;
+    color: variables.$dark-gray;
+    background-color: variables.$white;
+    background-clip: padding-box;
+    border: 1px solid variables.$medium-gray;
+    border-radius: variables.$border-radius;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:focus {
+      color: variables.$dark-gray;
+      background-color: variables.$white;
+      border-color: color.adjust(variables.$primary-color, $lightness: 20%);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(variables.$primary-color, 0.25);
+    }
+
+    &::placeholder {
+      color: variables.$secondary-color;
+      opacity: 1;
+    }
+
+    &:disabled,
+    &[readonly] {
+      background-color: variables.$light-gray;
+      opacity: 1;
+    }
+  }
+
+  &__error {
+    color: variables.$danger-color;
+    font-size: variables.$font-size-sm;
+    margin-top: math.div(variables.$spacing-unit, 2);
+  }
+
+  &__checkbox-group,
+  &__radio-group {
+    margin-bottom: variables.$spacer;
+
+    .form__checkbox,
+    .form__radio {
+      display: inline-block;
+      margin-right: variables.$spacing-unit;
+
+      input[type="checkbox"],
+      input[type="radio"] {
+        margin-right: math.div(variables.$spacing-unit, 2);
+      }
+    }
+  }
+
+  &__help-text {
+    font-size: variables.$font-size-sm;
+    color: variables.$secondary-color;
+    margin-top: math.div(variables.$spacing-unit, 2);
+  }
+}

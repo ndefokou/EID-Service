@@ -1,0 +1,54 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+.report/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for compiled output
+/dist
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Optional npm cache directory
+.npm
+.yarn
+
+# Optional REPL history
+.node_repl_history
+
+# A .env file for environment variables (local config)
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# ESLint cache
+.eslintcache
+
+# Jest cache
+.jest_cache
+
+# Certs and keys
+# Certificates should be managed securely and not committed directly to Git.
+# However, if using placeholder certs for development, they might be here.
+# It's generally safer to explicitly list actual cert files if they are not to be committed.
+/certificates/rp/*.key
+/certificates/rp/*.pem
+/certificates/ca/*.key
+/certificates/ca/*.pem

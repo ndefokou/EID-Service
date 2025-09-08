@@ -1,0 +1,67 @@
+@use '../../../assets/styles/base/variables' as variables;
+@use "sass:color";
+
+.attributeConsent {
+  background-color: variables.$white; /* Assuming card background is white */
+  border-radius: variables.$border-radius; /* Using base border-radius */
+  padding: 30px;
+  box-shadow: variables.$box-shadow; /* Using base box-shadow */
+  text-align: center;
+  max-width: 600px;
+  margin: 50px auto;
+
+  .title {
+    color: variables.$dark-gray; /* Using dark-gray for primary text */
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    color: variables.$medium-gray; /* Using medium-gray for secondary text */
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+
+  .error {
+    color: variables.$danger-color; /* Using danger-color for errors */
+    margin-bottom: 20px;
+  }
+
+  .attributeList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 15px; // For scrollbar space
+
+    .checkboxLabel {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      color: variables.$dark-gray; /* Using dark-gray for primary text */
+      cursor: pointer;
+
+      input[type="checkbox"] {
+        margin-right: 10px;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .cancelButton {
+      background-color: variables.$medium-gray; /* Using medium-gray for cancel button */
+      &:hover {
+        background-color: color.adjust(variables.$medium-gray, $lightness: -10%);
+      }
+    }
+  }
+}

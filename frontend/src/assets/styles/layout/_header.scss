@@ -1,0 +1,60 @@
+@use '../base/variables' as variables;
+@use '../base/mixins';
+@use "sass:color";
+@use "sass:math";
+
+.header {
+  background-color: variables.$dark-gray;
+  color: variables.$white;
+  padding: variables.$spacing-unit * 2;
+  box-shadow: variables.$box-shadow-sm;
+
+  &__container {
+    @include mixins.flex-center(row);
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    font-size: variables.$font-size-lg;
+    font-weight: 700;
+    color: variables.$white;
+    text-decoration: none;
+
+    &:hover {
+      color: color.adjust(variables.$white, $lightness: 10%);
+    }
+  }
+
+  &__nav {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      @include mixins.flex-center(row);
+
+      li {
+        margin-left: variables.$spacing-unit * 3;
+      }
+    }
+
+    a {
+      color: variables.$white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: math.div(variables.$spacing-unit, 2) variables.$spacing-unit;
+      border-radius: variables.$border-radius-sm;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: color.adjust(variables.$dark-gray, $lightness: 10%);
+        text-decoration: none;
+      }
+
+      &.active {
+        background-color: variables.$primary-color;
+      }
+    }
+  }
+}

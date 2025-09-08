@@ -1,0 +1,68 @@
+@use 'variables';
+@use 'mixins';
+
+/* Base styles for the entire application */
+body {
+  margin: 0;
+  font-family: variables.$font-family-sans-serif;
+  font-size: variables.$font-size-base;
+  line-height: variables.$line-height-base;
+  color: variables.$dark-gray;
+  background-color: variables.$light-gray;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: variables.$font-family-monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: variables.$dark-gray;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: variables.$primary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+ul, ol {
+  padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+hr {
+  margin: 1rem 0;
+  color: variables.$medium-gray;
+  background-color: currentColor;
+  border: 0;
+  opacity: 0.25;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 960px; // Adjust as needed
+}
+
+// Accessibility styles for screen readers
+.sr-only {
+  @include mixins.sr-only;
+}

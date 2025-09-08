@@ -1,0 +1,50 @@
+@use '../base/variables' as variables;
+@use '../base/mixins';
+@use "sass:color";
+
+.footer {
+  background-color: variables.$dark-gray;
+  color: variables.$white;
+  padding: variables.$spacing-unit * 2;
+  text-align: center;
+  box-shadow: variables.$box-shadow-sm;
+  margin-top: auto; // Pushes the footer to the bottom
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    @include mixins.flex-center(column);
+  }
+
+  p {
+    margin: 0;
+    font-size: variables.$font-size-sm;
+    color: color.adjust(variables.$white, $lightness: 20%);
+  }
+
+  nav {
+    margin-top: variables.$spacing-unit;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      @include mixins.flex-center(row);
+
+      li {
+        margin: 0 (variables.$spacing-unit * 1.5);
+      }
+    }
+
+    a {
+      color: color.adjust(variables.$white, $lightness: 20%);
+      text-decoration: none;
+      font-weight: 400;
+
+      &:hover {
+        color: variables.$white;
+        text-decoration: underline;
+      }
+    }
+  }
+}

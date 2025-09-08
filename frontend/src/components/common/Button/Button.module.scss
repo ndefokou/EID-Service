@@ -1,0 +1,23 @@
+@use '../../../assets/styles/base/variables' as variables;
+@use "sass:color";
+
+.button {
+  background-color: variables.$primary-color;
+  color: variables.$white; /* Assuming --color-on-primary is white for primary actions */
+  padding: 10px 20px;
+  border: none;
+  border-radius: variables.$border-radius-sm; /* Using sm for smaller radius */
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: color.adjust(variables.$primary-color, $lightness: -10%);
+  }
+
+  &:disabled {
+    background-color: variables.$light-gray; /* Using light-gray for disabled background */
+    color: variables.$dark-gray; /* Using dark-gray for disabled text */
+    cursor: not-allowed;
+  }
+}

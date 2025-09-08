@@ -1,0 +1,43 @@
+@import '../../../assets/styles/main.scss';
+
+.eid-card {
+  background-color: $white;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: $spacer * 2;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+
+  &__icon {
+    font-size: 3rem;
+    margin-bottom: $spacer;
+    color: $secondary-color; // Default color
+  }
+
+  &__message {
+    font-size: $font-size-lg;
+    color: $dark-gray;
+  }
+
+  // Status-specific styles
+  &--reading {
+    border: 2px solid $info-color;
+    .eid-card__icon {
+      color: $info-color;
+    }
+  }
+
+  &--success {
+    border: 2px solid $accent-color;
+    .eid-card__icon {
+      color: $accent-color;
+    }
+  }
+
+  &--error {
+    border: 2px solid $danger-color;
+    .eid-card__icon {
+      color: $danger-color;
+    }
+  }
+}

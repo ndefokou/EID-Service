@@ -1,0 +1,39 @@
+// Spacing utilities
+@import '../base/variables';
+
+@each $prop, $abbrev in (margin: m, padding: p) {
+  @each $dir, $infix in (all: '', top: t, right: r, bottom: b, left: l, x-axis: x, y-axis: y) {
+    @each $size-name, $size in $spacers {
+      .#{$abbrev}#{$infix}-#{$size-name} {
+        @if $dir == 'all' {
+          #{$prop}: $size !important;
+        } @else if $dir == 'top' {
+          #{$prop}-top: $size !important;
+        } @else if $dir == 'right' {
+          #{$prop}-right: $size !important;
+        } @else if $dir == 'bottom' {
+          #{$prop}-bottom: $size !important;
+        } @else if $dir == 'left' {
+          #{$prop}-left: $size !important;
+        } @else if $dir == 'x-axis' {
+          #{$prop}-left: $size !important;
+          #{$prop}-right: $size !important;
+        } @else if $dir == 'y-axis' {
+          #{$prop}-top: $size !important;
+          #{$prop}-bottom: $size !important;
+        }
+      }
+    }
+  }
+}
+
+// Auto margins
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}

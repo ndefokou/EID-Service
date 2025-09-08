@@ -1,0 +1,32 @@
+@use '../base/variables' as variables;
+@use "sass:math";
+
+.card {
+  background-color: variables.$white;
+  border-radius: variables.$border-radius;
+  box-shadow: variables.$box-shadow-sm;
+  padding: variables.$spacer * 1.5;
+  margin-bottom: variables.$spacer;
+
+  &__header {
+    margin-bottom: variables.$spacer;
+    padding-bottom: math.div(variables.$spacer, 2);
+    border-bottom: 1px solid variables.$medium-gray;
+
+    h2, h3 {
+      margin: 0;
+      color: variables.$dark-gray;
+    }
+  }
+
+  &__body {
+    // Content of the card
+  }
+
+  &__footer {
+    margin-top: variables.$spacer;
+    padding-top: math.div(variables.$spacer, 2);
+    border-top: 1px solid variables.$medium-gray;
+    text-align: right;
+  }
+}
