@@ -21,16 +21,12 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "@root/*": [
-        "../../backend/src/utils/*"
-      ],
       "@frontendUtils/*": [
         "utils/*"
       ]
     }
   },
   "include": [
-    "src",
-    "../backend/src/utils"
+    "src"
   ]
 }

@@ -7,7 +7,7 @@ export const EID_CONFIG = {
   RP_ID: process.env.EID_RP_ID || 'localhost',
   RP_CALLBACK_URL: process.env.EID_RP_CALLBACK_URL || 'http://localhost:3001/api/eid/callback',
   RP_CERTIFICATE_PATH: process.env.EID_RP_CERTIFICATE_PATH || './certificates/rp/rp-certificate.pem',
-  RP_PRIVATE_KEY_PATH: process.env.EID_RP_PRIVATE_KEY_PATH || './certificates/rp/rp-private-key.pem',
+  RP_PRIVATE_KEY_PATH: process.env.EID_RP_PRIVATE_KEY_PATH || './certificates/eid_server/eid-server-private-key.pem',
   RP_PRIVATE_KEY_PASS: process.env.EID_RP_PRIVATE_KEY_PASS || '', // Added for encrypted private keys
 
   // eID Client Configuration

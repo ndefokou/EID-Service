@@ -16,6 +16,15 @@ const SESSION_ID_MISSING_ERROR = 'Session ID is missing. Cannot start eID authen
 const EID_START_FAILURE_MESSAGE = 'Failed to initiate eID authentication.';
 const NETWORK_ERROR_MESSAGE = 'Network error during eID initiation.';
 
+enum EidFlowStep {
+  IDENTIFICATION = 'identification',
+  ATTRIBUTE_CONSENT = 'attribute_consent',
+  PROCESSING = 'processing',
+  COMPLETED = 'completed',
+  FAILED = 'failed',
+  USEID_INITIATION = 'useid_initiation',
+}
+
 // --- Helper Functions ---
 const handleEidError = (
   err: unknown,
@@ -37,19 +46,11 @@ const handleEidError = (
 };
 
 
-enum EidFlowStep {
-  IDENTIFICATION = 'identification',
-  ATTRIBUTE_CONSENT = 'attribute_consent',
-  PROCESSING = 'processing',
-  COMPLETED = 'completed',
-  FAILED = 'failed',
-  USEID_INITIATION = 'useid_initiation', 
-}
-
 interface EidFlowContainerProps {
   onEidSuccess: (attributes: Record<string, any>) => void;
   onEidFailure: (error: string) => void;
 }
+
 
 export const EidFlowContainer: React.FC<EidFlowContainerProps> = ({ onEidSuccess, onEidFailure }) => {
   const [currentStep, setCurrentStep] = useState<EidFlowStep>(EidFlowStep.USEID_INITIATION);

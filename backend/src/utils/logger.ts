@@ -1,4 +1,5 @@
-import winston from 'winston';
+import winston, { format as Format } from 'winston';
+import { TransformableInfo } from 'logform';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -31,7 +32,7 @@ const format = winston.format.combine(
   winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
   winston.format.colorize({ all: true }),
   winston.format.printf(
-    (info) => `${info.timestamp} ${info.level}: ${info.message}`,
+    (info: TransformableInfo) => `${info.timestamp} ${info.level}: ${info.message}`,
   ),
 );
 
