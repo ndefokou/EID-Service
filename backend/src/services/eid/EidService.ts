@@ -97,25 +97,25 @@ export class EidService {
             <eid:DateOfExpiry>REQUIRED</eid:DateOfExpiry>
             <eid:GivenNames>REQUIRED</eid:GivenNames>
             <eid:FamilyNames>REQUIRED</eid:FamilyNames>
-            <!-- Hardcoding a few fields from the example to debug the XML deserialization error -->
-            <!-- Uncomment and expand as needed once the basic structure is accepted by the server -->
-            <!-- <eid:ArtisticName>ALLOWED</eid:ArtisticName> -->
-            <!-- <eid:AcademicTitle>ALLOWED</eid:AcademicTitle> -->
+            <eid:ArtisticName>ALLOWED</eid:ArtisticName>
+            <eid:AcademicTitle>ALLOWED</eid:AcademicTitle>
             <eid:DateOfBirth>REQUIRED</eid:DateOfBirth>
-            <!-- <eid:PlaceOfBirth>REQUIRED</eid:PlaceOfBirth> -->
-            <!-- <eid:Nationality>REQUIRED</eid:Nationality> -->
-            <!-- <eid:BirthName>REQUIRED</eid:BirthName> -->
-            <!-- <eid:PlaceOfResidence>REQUIRED</eid:PlaceOfResidence> -->
-            <!-- <eid:CommunityID/> -->
-            <!-- <eid:ResidencePermitI/> -->
-            <!-- <eid:RestrictedID>REQUIRED</eid:RestrictedID> -->
-            <!-- <eid:AgeVerification>REQUIRED</eid:AgeVerification> -->
-            <!-- <eid:PlaceVerification>REQUIRED</eid:PlaceVerification> -->
+            <eid:PlaceOfBirth>REQUIRED</eid:PlaceOfBirth>
+            <eid:Nationality>REQUIRED</eid:Nationality>
+            <eid:BirthName>REQUIRED</eid:BirthName>
+            <eid:PlaceOfResidence>REQUIRED</eid:PlaceOfResidence>
+            <eid:CommunityID>NOTREQUESTED</eid:CommunityID>
+            <eid:ResidencePermitI>NOTREQUESTED</eid:ResidencePermitI>
+            <eid:RestrictedID>REQUIRED</eid:RestrictedID>
+            <eid:AgeVerification>REQUIRED</eid:AgeVerification>
+            <eid:PlaceVerification>REQUIRED</eid:PlaceVerification>
          </eid:UseOperations>
-         ${eidSession.ageVerificationRequested ? '<eid:AgeVerificationRequest><eid:Age>18</eid:Age></eid:AgeVerificationRequest>' : ''}
-         ${eidSession.communityIdRequested ? `<eid:PlaceVerificationRequest><eid:CommunityID>${eidSession.communityIdRequested}</eid:CommunityID></eid:PlaceVerificationRequest>` : ''}
-         <!-- The following elements are examples from the BSI documentation and can be conditionally included: -->
-         <!--
+         <eid:AgeVerificationRequest>
+            <eid:Age>${eidSession.ageVerificationRequested ? '18' : '0'}</eid:Age>
+         </eid:AgeVerificationRequest>
+         <eid:PlaceVerificationRequest>
+            <eid:CommunityID>${eidSession.communityIdRequested ? eidSession.communityIdRequested : 'NOTREQUESTED'}</eid:CommunityID>
+         </eid:PlaceVerificationRequest>
          <eid:TransactionAttestationRequest>
             <eid:TransactionAttestationFormat>
                http://bsi.bund.de/eID/ExampleAttestationFormat
@@ -129,7 +129,6 @@ export class EidService {
             <eid:SECertified>ALLOWED</eid:SECertified>
             <eid:SEEndorsed>ALLOWED</eid:SEEndorsed>
          </eid:EIDTypeRequest>
-         -->
       </eid:useIDRequest>
    </soapenv:Body>
 </soapenv:Envelope>`;
