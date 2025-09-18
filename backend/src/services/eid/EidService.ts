@@ -87,63 +87,67 @@ export class EidService {
 
       // Construct SOAP XML payload for useID request
       const soapPayload = `
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eid="http://bsi.bund.de/eID/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <eid:useIDRequest>
-         <eid:UseOperations>
-            <eid:DocumentType>REQUIRED</eid:DocumentType>
-            <eid:IssuingState>REQUIRED</eid:IssuingState>
-            <eid:DateOfExpiry>REQUIRED</eid:DateOfExpiry>
-            <eid:GivenNames>REQUIRED</eid:GivenNames>
-            <eid:FamilyNames>REQUIRED</eid:FamilyNames>
-            <eid:ArtisticName>ALLOWED</eid:ArtisticName>
-            <eid:AcademicTitle>ALLOWED</eid:AcademicTitle>
-            <eid:DateOfBirth>REQUIRED</eid:DateOfBirth>
-            <eid:PlaceOfBirth>REQUIRED</eid:PlaceOfBirth>
-            <eid:Nationality>REQUIRED</eid:Nationality>
-            <eid:BirthName>REQUIRED</eid:BirthName>
-            <eid:PlaceOfResidence>REQUIRED</eid:PlaceOfResidence>
-            <eid:CommunityID>NOTREQUESTED</eid:CommunityID>
-            <eid:ResidencePermitI>NOTREQUESTED</eid:ResidencePermitI>
-            <eid:RestrictedID>REQUIRED</eid:RestrictedID>
-            <eid:AgeVerification>REQUIRED</eid:AgeVerification>
-            <eid:PlaceVerification>REQUIRED</eid:PlaceVerification>
-         </eid:UseOperations>
-         <eid:AgeVerificationRequest>
-            <eid:Age>${eidSession.ageVerificationRequested ? '18' : '0'}</eid:Age>
-         </eid:AgeVerificationRequest>
-         <eid:PlaceVerificationRequest>
-            <eid:CommunityID>${eidSession.communityIdRequested ? eidSession.communityIdRequested : 'NOTREQUESTED'}</eid:CommunityID>
-         </eid:PlaceVerificationRequest>
-         <eid:TransactionAttestationRequest>
-            <eid:TransactionAttestationFormat>
-               http://bsi.bund.de/eID/ExampleAttestationFormat
-            </eid:TransactionAttestationFormat>
-            <eid:TransactionContext>id599456-df</eid:TransactionContext>
-         </eid:TransactionAttestationRequest>
-         <eid:LevelOfAssuranceRequest>
-            http://bsi.bund.de/eID/LoA/hoch
-         </eid:LevelOfAssuranceRequest>
-         <eid:EIDTypeRequest>
-            <eid:SECertified>ALLOWED</eid:SECertified>
-            <eid:SEEndorsed>ALLOWED</eid:SEEndorsed>
-         </eid:EIDTypeRequest>
-      </eid:useIDRequest>
-   </soapenv:Body>
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:eid="http://bsi.bund.de/eID/">
+	<soapenv:Header />
+	<soapenv:Body>
+		<eid:useIDRequest>
+			<eid:UseOperations>
+				<eid:DocumentType>REQUIRED</eid:DocumentType>
+				<eid:IssuingState>REQUIRED</eid:IssuingState>
+				<eid:DateOfExpiry>REQUIRED</eid:DateOfExpiry>
+				<eid:GivenNames>REQUIRED</eid:GivenNames>
+				<eid:FamilyNames>REQUIRED</eid:FamilyNames>
+				<eid:ArtisticName>ALLOWED</eid:ArtisticName>
+				<eid:AcademicTitle>ALLOWED</eid:AcademicTitle>
+				<eid:DateOfBirth>REQUIRED</eid:DateOfBirth>
+				<eid:PlaceOfBirth>REQUIRED</eid:PlaceOfBirth>
+				<eid:Nationality>REQUIRED</eid:Nationality>
+				<eid:BirthName>REQUIRED</eid:BirthName>
+				<eid:PlaceOfResidence>REQUIRED</eid:PlaceOfResidence>
+				<eid:CommunityID />
+				<eid:ResidencePermitI />
+				<eid:RestrictedID>REQUIRED</eid:RestrictedID>
+				<eid:AgeVerification>REQUIRED</eid:AgeVerification>
+				<eid:PlaceVerification>REQUIRED</eid:PlaceVerification>
+			</eid:UseOperations>
+			<eid:AgeVerificationRequest>
+				<eid:Age>18</eid:Age>
+			</eid:AgeVerificationRequest>
+			<eid:PlaceVerificationRequest>
+				<eid:CommunityID>027605</eid:CommunityID>
+			</eid:PlaceVerificationRequest>
+			<eid:TransactionAttestationRequest>
+				<eid:TransactionAttestationFormat>
+					http://bsi.bund.de/eID/ExampleAttestationFormat
+				</eid:TransactionAttestationFormat>
+				<eid:TransactionContext>id599456-df</eid:TransactionContext>
+			</eid:TransactionAttestationRequest>
+			<eid:LevelOfAssuranceRequest>
+				http://bsi.bund.de/eID/LoA/hoch
+			</eid:LevelOfAssuranceRequest>
+			<eid:EIDTypeRequest>
+				<eid:SECertified>ALLOWED</eid:SECertified>
+				<eid:SEEndorsed>ALLOWED</eid:SEEndorsed>
+			</eid:EIDTypeRequest>
+		</eid:useIDRequest>
+	</soapenv:Body>
 </soapenv:Envelope>`;
 
       // Send use ID request to the eID server with SOAP XML payload
       logger.info(`Sending use ID SOAP request to eID server: ${EID_CONFIG.EID_SERVER_BASE_URL}`);
       try {
-        await axios.post(EID_CONFIG.EID_SERVER_BASE_URL, soapPayload, {
+        const response = await axios.post(EID_CONFIG.EID_SERVER_BASE_URL, soapPayload, {
           headers: {
             'Content-Type': 'text/xml',
           },
           timeout: EID_CONFIG.EID_SERVER_TIMEOUT,
           httpsAgent,
         });
-        logger.info(`use ID SOAP request successfully sent for session: ${eidSession.sessionId}`);
+
+        logger.info(`useID server response for session ${eidSession.sessionId}: ${response.data}`);
+
       } catch (axiosError: any) {
         logger.error(`Failed to send use ID SOAP request to eID server for session ${eidSession.sessionId}: ${axiosError.message}`);
         throw new EidSessionError(`Failed to send use ID request: ${axiosError.message}`);
@@ -267,24 +271,24 @@ export class EidService {
   public async getTcTokenURL(sessionId: string): Promise<string> {
     logger.debug(`Retrieving tcTokenURL for session: ${sessionId}`);
 
-     if (!validator.isUUID(sessionId)) {
-       logger.error('Invalid sessionId provided.');
-       throw new EidSessionError('Invalid session ID.');
-     }
+    if (!validator.isUUID(sessionId)) {
+      logger.error('Invalid sessionId provided.');
+      throw new EidSessionError('Invalid session ID.');
+    }
 
-     const eidSession = await this.sessionManager.getSession(sessionId);
-     if (!eidSession) {
-       logger.error(`eID Session not found for tcTokenURL retrieval: ${sessionId}`);
-       throw new EidSessionError('eID Session not found or expired.');
-     }
+    const eidSession = await this.sessionManager.getSession(sessionId);
+    if (!eidSession) {
+      logger.error(`eID Session not found for tcTokenURL retrieval: ${sessionId}`);
+      throw new EidSessionError('eID Session not found or expired.');
+    }
 
-     if (!eidSession.tcTokenURL) {
-       logger.error(`tcTokenURL not found for session: ${sessionId}`);
-       throw new EidSessionError('TC Token URL not available for this session.');
-     }
+    if (!eidSession.tcTokenURL) {
+      logger.error(`tcTokenURL not found for session: ${sessionId}`);
+      throw new EidSessionError('TC Token URL not available for this session.');
+    }
 
-     return eidSession.tcTokenURL;
-   }
+    return eidSession.tcTokenURL;
+  }
 
   /**
    * Processes the callback from the eID server, validating the response and updating the session.
@@ -455,7 +459,7 @@ export class EidService {
       }
 
       const attributeRequest = await this.tr03124Protocol.generateAttributeRequest(sessionId, attributeNames);
-      
+
       // Make HTTP request to eID server with retry mechanism
       let eidServerResponse;
       for (let attempt = 1; attempt <= EID_CONFIG.MAX_RETRIES; attempt++) {

@@ -15,7 +15,7 @@ export const EID_CONFIG = {
   EID_CLIENT_BASE_URL: process.env.EID_CLIENT_BASE_URL || 'http://127.0.0.1:24727/eID-Client',
   
   // SAML Specific Configuration for TR-03124 Compliance
-  EID_SERVER_SAML_ENDPOINT: process.env.EID_SERVER_SAML_ENDPOINT || 'https://localhost:3000/eIDService/useID',
+  EID_SERVER_SAML_ENDPOINT: process.env.EID_SERVER_SAML_ENDPOINT || 'https://localhost:3000/',
   EID_SERVER_SAML_CERT_PATH: process.env.EID_SERVER_SAML_CERT_PATH || './certificates/eid_server/eid-server-certificate.pem',
   RP_SAML_ENTITY_ID: process.env.EID_RP_SAML_ENTITY_ID || 'http://localhost:3001/saml/metadata',
   RP_ACS_URL: process.env.EID_RP_ACS_URL || 'http://localhost:3001/api/eid/saml/acs',
@@ -23,7 +23,7 @@ export const EID_CONFIG = {
 
   // eID Server Configuration
   // IMPORTANT: In production, this URL must point to the actual eID server.
-  EID_SERVER_BASE_URL: process.env.EID_SERVER_BASE_URL || 'https://localhost:3000/eIDService/useID',
+  EID_SERVER_BASE_URL: process.env.EID_SERVER_BASE_URL || 'https://localhost:3000/',
   // IMPORTANT: Ensure these certificate paths are correctly resolved in your production environment.
   EID_SERVER_CERTIFICATE_PATH: process.env.EID_SERVER_CERTIFICATE_PATH || './certificates/eid_server/eid-server-certificate.pem',
   EID_SERVER_PRIVATE_KEY_PATH: process.env.EID_SERVER_PRIVATE_KEY_PATH || './certificates/eid_server/eid-server-private-key.pem',
